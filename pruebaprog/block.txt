@@ -5,3 +5,6 @@ Para subir:
 
 Para bajar:
     git pull
+
+para guardar local
+git stash
