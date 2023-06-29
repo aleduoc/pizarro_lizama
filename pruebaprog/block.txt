@@ -1,3 +1,8 @@
+Para subir:
+
 git add .
 git commit -m "mensaje"
 git push -u origin main
+
+Para bajar:
+git pull
