@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Obras
-from .forms import ContactoForm
-
+from .forms import ContactoForm, ObrasForm, CustomUserCreationForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 def home(request):
@@ -41,3 +42,69 @@ def pagina07(request):
 
 
     return render(request, 'web/pagina07.html', data)
+
+@permission_required('app.add_obras')
+def agregar_producto(request):
+    data = {
+        'form': ObrasForm()
+    }
+
+    if request.method == 'POST':
+        formulario = ObrasForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Guardado correctamente"
+        else:
+            data["form"] = formulario
+
+    return render(request, 'web/productos/agregar.html', data)
+
+@permission_required('app.view_obras')
+def listar_producto(request):
+    productos = Obras.objects.all()
+
+    data = {
+        'productos': productos
+    }
+    
+    return render(request, 'web/productos/listar.html', data)
+
+@permission_required('app.change_obras')
+def modificar_producto(request, id):
+    
+    producto = get_object_or_404(Obras, id=id)
+
+    data = {
+        'form': ObrasForm(instance=producto)
+    }
+
+    if request.method == 'POST':
+        formulario = ObrasForm(data=request.POST, instance=producto, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="listar_producto")
+        data["form"] = formulario
+
+    return render(request, 'web/productos/modificar.html', data)
+
+@permission_required('app.delete_obras')
+def eliminar_producto(request, id):
+    producto = get_object_or_404(Obras, id=id)
+    producto.delete()
+    return redirect(to="listar_producto")
+
+def registro(request):
+    data = {
+        'form': CustomUserCreationForm()
+    }
+
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password=formulario.cleaned_data["password1"])
+            login(request, user)
+            return redirect(to="home")
+        data["form"] = formulario
+
+    return render(request, 'registration/registro.html', data)

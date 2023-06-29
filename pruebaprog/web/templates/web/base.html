@@ -48,6 +48,31 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{% url 'pagina07' %}">Venta de obras</a>
                   </li>
+                  {% if perms.app.add_obras %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'agregar_producto' %}">Agregar Nueva Obra</a>
+                  </li>
+                  {% endif %}
+                  {% if perms.app.view_obras %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'listar_producto' %}">Listado de Obras</a>
+                  </li>
+                  {% endif %}
+                  {% if user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Cerrar sesion</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">@{{ user.username }}</a>
+                  </li>
+                  {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Iniciar sesion</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'registro' %}">Registrate</a>
+                  </li>
+                  {% endif %}
                 </ul>
               </div>
             </div>
