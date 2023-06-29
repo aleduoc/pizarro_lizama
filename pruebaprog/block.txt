@@ -7,4 +7,4 @@ git push -u origin main
 Para bajar:
 git pull
 
-Diego lo ma grande
+Diego lo ma weco
