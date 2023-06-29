@@ -1,10 +1,7 @@
 Para subir:
-
-git add .
-git commit -m "mensaje"
-git push -u origin main
+    git add .
+    git commit -m "mensaje"
+    git push -u origin main
 
 Para bajar:
-git pull
-
-Diego lo ma weco
+    git pull
