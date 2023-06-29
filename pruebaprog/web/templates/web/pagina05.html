@@ -1,0 +1,59 @@
+{% extends 'web/base.html' %}
+
+{% load static %}
+
+{% block contenido %}
+
+<div id="pared">
+  <img id="user-wall" src="{% static 'web/img/fotopared.jpg' %}" alt="imagen pared">
+</div>
+  
+  <section class="container-fluid" id=>
+    <div class="row">
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen1.jpg' %}" class="img-fluid "  alt="El leon y el unicornio" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen2.jpg' %}" class="img-fluid "  alt="Nikola Tesla" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen3.jpg' %}" class="img-fluid " alt="Cisne imaginario" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen4.jpg' %}" class="img-fluid " alt="JUICING: Mejor vivir a través de la Química" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img//imagen5.jpg' %}" class="img-fluid " alt="Un Mariachi en la Plaza de Tiananmen" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen6.jpg' %}" class="img-fluid " alt="La vida es algo mas que solo vivir" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen7.jpg' %}" class="img-fluid " alt="Un Pajaro en la Mano" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen8.jpg' %}" class="img-fluid " alt="El Final de un Día Perfecto" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen9.jpg' %}" class="img-fluid " alt="Un mar de locos" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen10.jpg' %}" class="img-fluid " alt="Hombre Pensante" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen11.jpg' %}" class="img-fluid " alt="Lienzo a mano armada" onclick="selectArtwork(this)">
+      </div>
+      <div class="col-lg-3 col-6 py-3" id="loco">
+        <img src="{% static 'web/img/imagen12.jpg' %}" class="img-fluid " alt="BIRDBRAIN" onclick="selectArtwork(this)">
+      </div>
+    </div>
+  </section>
+
+  <div id="boton">
+      <p id="selected-artwork">Seleccione una obra de arte</p>
+      <a href="#pared"><button id="overlay-button" onclick="overlayImages()" >Visualizar obra de arte en la pared</button></a>
+  </div>
+
+  <script src="{% static '/web/js/pagfun.js' %}"></script>
+
+{% endblock %}
