@@ -1,5 +1,27 @@
 {% extends 'web/base.html' %}
 
+{% block js %}
+
+<script>
+    function eliminar_producto(id) {
+        swal.fire({
+            "Title": "Estas Seguro/a?",
+            "text": "Esta accion no se puede deshacer",
+            "icon": "warning",
+            "showCancelButton": true,
+            "cancelButtonText": "No, Cancelar",
+            "confirmButtonText": "Si, Continuar"
+        })
+        .then(function(result){
+            if(result.isConfirmed){
+                window.location.href= "/eliminar-producto/"+id+"/"
+            }
+        })
+    }
+</script>
+
+{% endblock %}
+
 {% block contenido %}
 
 {% load humanize %}
@@ -21,17 +43,17 @@
         
             {% for p in productos %}
             <tr>
-                <td>{{ p.nombre | title  }}<td>
-                <td>{{ p.autor | title  }}</td>
-                <td>${{ p.precio | intcomma  }}<td>
-                <td>
+                <th>{{ p.nombre | title  }}</th>
+                <th>{{ p.autor | title  }} </th>
+                <th>${{ p.precio | intcomma }}</th>
+                <th>
                     {% if perms.app.change_obras %}
                     <a href="{% url 'modificar_producto' p.id %}" class="btn btn-info btn-sm">Modificar</a>
                     {% endif %}
                     {% if perms.app.delete_obras %}
-                    <a href="{% url 'eliminar_producto' p.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    <a href="#" onclick="eliminar_producto({{p.id}})" class="btn btn-danger btn-sm">Eliminar</a>
                     {% endif %}
-                </td>
+                </th>
             </tr>
             {% endfor %}
         

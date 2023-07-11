@@ -18,11 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf  import settings
 from django.conf.urls.static import static
+from web.views import pagina07,agregar_obras,eliminar_obras,restart_obras,limpiar_carrito
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('web.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('agregar/<int:obras_id>/', agregar_obras, name="Add"),
+    path('eliminar/<int:obras_id>/', eliminar_obras, name="Del"),
+    path('restar/<int:obras_id>/', restart_obras, name="Sub"),
+    path('limpiar/', limpiar_carrito, name="CLS"),
 ]
 
 if settings.DEBUG:

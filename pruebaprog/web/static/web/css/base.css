@@ -113,6 +113,14 @@ header h1 {
     font-style: italic;
 
 }
+.fixed-cart {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    transition: top 0.3s ease-out;
+ }
+ 
 
 /* Pag 4 */
 /*
