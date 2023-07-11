@@ -3,6 +3,7 @@
 {% block contenido %}
 
 {% load crispy_forms_tags %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <br>
 <br>
@@ -13,17 +14,17 @@
             <div class="card-body">
                 <h2 style="text-align: center;">Agregar nuevo Producto</h2>
                 <hr>
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="" method="post" enctype="multipart/form-data" id="formulario-guardar">
 
                     {% csrf_token %}
 
                     {{ form | crispy }}
 
-                <div class="d-flex justify-content-end">
-                    <input type="reset" value="Cancelar" class="btn btn-secondary">
-                    &nbsp;
-                    <input type="submit" value="Guardar" class="btn btn-primary">
-                </div>
+                    <div class="d-flex justify-content-end">
+                        <input type="reset" value="Cancelar" class="btn btn-secondary">
+                        &nbsp;
+                        <button type="button" class="btn btn-primary" onclick="mostrarMensajeSweetAlert()">Guardar</button>
+                    </div>
 
                 </form>
                 {{mensaje}}
@@ -33,6 +34,21 @@
     </div>
 </div>
 
-
+<script>
+    function mostrarMensajeSweetAlert() {
+        Swal.fire({
+            title: "Guardar",
+            text: "¿Desea guardar el producto?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            cancelButtonText: "Cancelar",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("formulario-guardar").submit(); // Enviar el formulario
+            }
+        });
+    }
+</script>
 
 {% endblock %}

@@ -7,7 +7,7 @@ class Obras(models.Model):
     autor = models.CharField(max_length=50)
     precio = models.IntegerField()
     descripcion = models.TextField()
-    imagen = models.ImageField(upload_to="obras", null=False)
+    imagen = models.ImageField(upload_to="obras", null=True)
 
     def __str__(self):
         return self.nombre

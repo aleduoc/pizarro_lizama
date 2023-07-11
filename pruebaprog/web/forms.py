@@ -2,11 +2,15 @@ from django import forms
 from .models import Contacto, Obras
 from django.contrib.auth.forms import UserCreationForm
 
+
+
 class ContactoForm(forms.ModelForm):
 
     class Meta:
         model = Contacto
-        fields = '__all__'
+        fields = ["nombre", "correo" ,"tipo_consulta","mensaje", "avisos"]
+
+
 
 class ObrasForm(forms.ModelForm):
 
@@ -19,4 +23,4 @@ class ObrasForm(forms.ModelForm):
         fields = '__all__'
 
 class CustomUserCreationForm(UserCreationForm):
-    pass
+    pass 

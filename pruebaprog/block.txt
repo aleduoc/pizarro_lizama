@@ -4,6 +4,7 @@ Para subir:
     git push -u origin main
 
 Para bajar:
+
     git pull
 
 para guardar local

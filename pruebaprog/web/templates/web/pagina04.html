@@ -20,14 +20,17 @@
       {{ form | crispy }}
       
       <br>
-      <div class="d-flex justify-content-end">
-        <input type="reset" value="Cancerlar" class="btn btn-secondary">
-        &nbsp;
-        <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
-      </div>
-      
+      {% if request.user.is_authenticated %}
+        <div class="d-flex justify-content-end">
+          <input type="reset" value="Cancelar" class="btn btn-secondary">
+          &nbsp;
+          <button type="submit" id="btnEnviar" class="btn btn-primary">Enviar</button>
+        </div>
+        {% else %}
+          <h1 style="text-align: center;">Debe registrarse para enviar los datos!</h1>
+        {% endif %}
     </form>
-    {{mensaje}}
+    
 
       </div>
     </div>    
